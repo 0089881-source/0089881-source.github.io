@@ -233,7 +233,7 @@ function drawRobot() {
       player.x - hitDx,
       player.y - hitDy,
       player.width,
-      player.height
+      player.height,
     );
   } else {
     //for running to the left you mirror the image
@@ -248,7 +248,7 @@ function drawRobot() {
       -player.x - player.width + hitDx,
       player.y - hitDy,
       player.width,
-      player.height
+      player.height,
     );
     ctx.restore(); //put the canvas back to normal
   }
@@ -270,7 +270,7 @@ function collision() {
         platforms[i].x,
         platforms[i].y,
         platforms[i].width,
-        platforms[i].height
+        platforms[i].height,
       );
     }
   }
@@ -393,7 +393,7 @@ function deathOfPlayer() {
     canvas.width / 4,
     canvas.height / 6,
     canvas.width / 2,
-    canvas.height / 2
+    canvas.height / 2,
   );
   ctx.fillStyle = "black";
   ctx.font = "800% serif";
@@ -401,14 +401,14 @@ function deathOfPlayer() {
     "You are dead",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 5,
-    (canvas.width / 16) * 14
+    (canvas.width / 16) * 14,
   );
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 3,
-    (canvas.width / 16) * 14
+    (canvas.width / 16) * 14,
   );
   if (keyPress.any) {
     keyPress.any = false;
@@ -509,7 +509,7 @@ function makeGrid() {
     ctx.fillText(
       i, // text
       i - 15, // x location
-      25 // y location
+      25, // y location
     );
   }
 
@@ -523,7 +523,7 @@ function makeGrid() {
     ctx.fillText(
       i, // text
       10, // x location
-      i + 5 // y location
+      i + 5, // y location
     );
   }
   gridMade = true;
@@ -536,7 +536,7 @@ function drawProjectiles() {
       projectiles[i].x,
       projectiles[i].y,
       projectiles[i].width,
-      projectiles[i].height
+      projectiles[i].height,
     );
     projectiles[i].x = projectiles[i].x + projectiles[i].speedX;
     projectiles[i].y = projectiles[i].y + projectiles[i].speedY;
@@ -552,7 +552,7 @@ function drawCannons() {
         cannons[i].x,
         cannons[i].y,
         cannons[i].projectileWidth,
-        cannons[i].projectileHeight
+        cannons[i].projectileHeight,
       );
     } else {
       cannons[i].projectileCountdown = cannons[i].projectileCountdown + 1;
@@ -574,13 +574,37 @@ function drawCannons() {
     }
 
     ctx.fillStyle = "grey";
-    ctx.save(); //save the current translation of the screen.
-    ctx.translate(cannons[i].x, cannons[i].y); //you are moving the top left of the screen to the pictures location, this is because you can't rotate the image, you have to rotate the whole page
-    ctx.rotate((cannons[i].rotation * Math.PI) / 180); //then you rotate. rotation is centered on 0,0 on the canvas, which is why we moved the picture to 0,0 with translate(x,y)
-    ctx.drawImage(cannonImage, 0, 0, cannonWidth, cannonHeight); //you draw the image on the rotated canvas. as of this line, the picture is straight and the rest of the page is rotated
-    //also the previous line uses -width / 2 so that the picture is centered. This will mean that (0,0) is at the exact center of the image
-    ctx.translate(-cannons[i].x, -cannons[i].y); //the reverse of the previous translate, this moves the page back to the correct place so that the image is no longer at (0,0)
-    ctx.restore(); //this unrotates the canvas so the canvas is straight, but now since you did that the picture looks rotated
+    ctx.save();
+    ctx.translate(cannons[i].x, cannons[i].y);
+    ctx.rotate((cannons[i].rotation * Math.PI) / 180);
+
+    const cannonBarrelWidth = cannonWidth * 0.8;
+    const cannonBarrelHeight = cannonHeight * 0.55;
+    ctx.fillStyle = "#3a3a3a";
+    ctx.fillRect(
+      -cannonBarrelWidth / 2,
+      -cannonBarrelHeight / 2,
+      cannonBarrelWidth,
+      cannonBarrelHeight,
+    );
+    ctx.fillStyle = "#1e1e1e";
+    ctx.fillRect(
+      -cannonWidth / 2,
+      cannonHeight * 0.08,
+      cannonWidth,
+      cannonHeight * 0.35,
+    );
+
+    if (cannonImage && cannonImage.complete) {
+      ctx.drawImage(
+        cannonImage,
+        -cannonWidth / 2,
+        -cannonHeight / 2,
+        cannonWidth,
+        cannonHeight,
+      );
+    }
+    ctx.restore();
   }
 }
 
@@ -593,7 +617,7 @@ function drawCollectables() {
         collectables[i].x,
         collectables[i].y,
         collectableWidth,
-        collectableHeight
+        collectableHeight,
       );
     } else {
       //draw the icons at the top if collected
@@ -606,7 +630,7 @@ function drawCollectables() {
         200 + 100 * i,
         10,
         collectableWidth,
-        collectableHeight
+        collectableHeight,
       );
       ctx.globalAlpha = 1;
     }
@@ -679,7 +703,7 @@ function winGame() {
     canvas.width / 4,
     canvas.height / 6,
     canvas.width / 2,
-    canvas.height / 2
+    canvas.height / 2,
   );
   ctx.fillStyle = "white";
   ctx.font = "800% serif";
@@ -687,14 +711,14 @@ function winGame() {
     "You Win!",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 5,
-    (canvas.width / 16) * 14
+    (canvas.width / 16) * 14,
   );
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
     canvas.width / 4,
     canvas.height / 6 + canvas.height / 3,
-    (canvas.width / 16) * 14
+    (canvas.width / 16) * 14,
   );
   if (keyPress.any) {
     keyPress.any = false;
@@ -713,7 +737,7 @@ function createPlatform(
   speedX = 1,
   minY = null,
   maxY = null,
-  speedY = 1
+  speedY = 1,
 ) {
   platforms.push({
     x,
@@ -760,7 +784,7 @@ function createCannon(
   height = defaultProjectileHeight,
   minPos = null,
   maxPos = null,
-  speed = 1
+  speed = 1,
 ) {
   if (wallLocation === "top") {
     cannons.push({
@@ -841,7 +865,7 @@ function createCollectable(
   bounce = 1,
   minX = null,
   maxX = null,
-  speed = 1
+  speed = 1,
 ) {
   if (type !== "") {
     var image = document.createElement("img");
@@ -872,8 +896,8 @@ function createProjectile(wallLocation, x, y, width, height) {
 
   if (wallLocation === "top") {
     projectiles.push({
-      x: x - 71.5,
-      y: y - 55 - height / 2,
+      x: x - width / 2,
+      y: y + cannonHeight / 2,
       speedX: 0,
       speedY: projectileSpeed,
       width,
@@ -881,8 +905,8 @@ function createProjectile(wallLocation, x, y, width, height) {
     });
   } else if (wallLocation === "bottom") {
     projectiles.push({
-      x: x + 47,
-      y: y + 50 + height / 2,
+      x: x - width / 2,
+      y: y - cannonHeight / 2 - height,
       speedX: 0,
       speedY: -projectileSpeed,
       width,
@@ -890,8 +914,8 @@ function createProjectile(wallLocation, x, y, width, height) {
     });
   } else if (wallLocation === "left") {
     projectiles.push({
-      x: x - 80 - width / 2,
-      y: y + 46,
+      x: x + cannonHeight / 2,
+      y: y - height / 2,
       speedX: projectileSpeed,
       speedY: 0,
       width,
@@ -899,19 +923,14 @@ function createProjectile(wallLocation, x, y, width, height) {
     });
   } else if (wallLocation === "right") {
     projectiles.push({
-      x: x + 40 + width / 2,
-      y: y - 71.5,
+      x: x - cannonHeight / 2 - width,
+      y: y - height / 2,
       speedX: -projectileSpeed,
       speedY: 0,
       width,
       height,
     });
   }
-
-  // putting this here instead of in every if
-  projectiles[projectiles.length - 1].x -= (width - defaultProjectileWidth) / 2;
-  projectiles[projectiles.length - 1].y -=
-    (height - defaultProjectileHeight) / 2;
 }
 
 function keyboardControlActions() {

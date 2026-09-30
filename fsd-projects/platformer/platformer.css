@@ -1,6 +1,6 @@
 body {
   margin: 0px;
-  background-color: #202737;
+  background-color: #9d4103;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -8,12 +8,17 @@ body {
 }
 
 canvas {
-  background-color: lightblue;
+  background-color: rgb(224, 100, 12);
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3ecf47b1-d0c7-4c8e-94d9-1375578eb73b/d49oqna-05488ad3-a2c6-43b5-b3cd-af165b710a0d.png/v1/fill/w_1024,h_641,q_80,strp/cobblestone_wallpaper_by_fivezero09_d49oqna-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQxIiwicGF0aCI6Ii9mLzNlY2Y0N2IxLWQwYzctNGM4ZS05NGQ5LTEzNzU1NzhlYjczYi9kNDlvcW5hLTA1NDg4YWQzLWEyYzYtNDNiNS1iM2NkLWFmMTY1YjcxMGEwZC5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.TO8z6srdkBRiU6tu2AkRPBZAN6Vv_YuoMFp9Tl-8rb4");
+  background-size: cover;
   margin: 20px;
   border-radius: 15px;
-  border: 5px solid rgba(118, 0, 233, 0.375);
+  border: 5px solid rgb(214, 75, 15);
 }
 
-img {
+
+#cannon,
+#player,
+#projectile {
   display: none;
 }

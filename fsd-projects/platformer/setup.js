@@ -4,7 +4,7 @@ const gravity = 0.5; // how much is subtracted from speedY each frame
 const friction = 1.5; // how much the player is slowed each frame
 const maxSpeed = 8; // maximum horizontal speed, not vertical
 const playerJumpStrength = 12; // this is subtracted from the speedY each jump
-const projectileSpeed = 8; // the speed of projectiles
+const projectileSpeed = 20; // the speed of projectiles
 let shouldDrawGrid = false;
 let gridMade = false;
 
@@ -18,8 +18,8 @@ const playerScale = 0.8; //makes the player just a bit smaller. Doesn't affect t
 
 // Player variables
 const player = {
-  x: 50,
-  y: 100,
+  x: 0,
+  y: 700,
   speedX: 0,
   speedY: 0,
   width: undefined,
@@ -78,9 +78,10 @@ let badPlatforms = [];
 let cannons = [];
 const cannonWidth = 118;
 const cannonHeight = 80;
-let projectiles = [];
+let projectiles = [5];
 const defaultProjectileWidth = 24;
-const defaultProjectileHeight = defaultProjectileWidth;
+const defaultProjectileHeight = 24
+defaultProjectileWidth;
 const collectableWidth = 40;
 const collectableHeight = 40;
 let collectables = [];
@@ -97,9 +98,9 @@ let animationDetails = {};
 
 var collectableList = {
   database: { image: "images/collectables/database.png" },
-  diamond: { image: "images/collectables/diamond-head.png" },
+  diamond: { image: "https://freepngimg.com/save/19496-minecraft-diamond-png/605x497" },
   grace: { image: "images/collectables/grace-head.png" },
-  kennedi: { image: "images/collectables/kennedi-head.png" },
+  kennedi: { image: "https://freepngimg.com/save/19506-minecraft-emerald-png/620x620" },
   max: { image: "images/collectables/max-head.png" },
-  steve: { image: "images/collectables/steve-head.png" },
+  steve: { image: "https://minecraft.wiki/images/Gold_Ingot_JE4_BE2.png?80cd6" },
 };

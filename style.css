@@ -169,8 +169,8 @@ nav h1 {
 }
 
 .nav-li a:hover {
-  background: #d48de4;
-  color: #d48de4;
+  background: #88ff01;
+  color: #44b2ab;
 }
 
 @media (max-width: 700px) {
@@ -228,8 +228,8 @@ nav h1 {
 }
 
 #portfolio a:hover {
-  background: #d48de4;
-  color: #fff;
+  background: #88ff01;
+  color: #44b2ab;
   transform: translateX(4px);
 }
 
